@@ -1,0 +1,5 @@
+ipykernel
+pyspark
+selenium
+webdriver-manager
+datetime
