@@ -1,5 +1,5 @@
-ipykernel
-pyspark
+pandas
+matplotlib
+numpy
 selenium
-webdriver-manager
-datetime
+webdriver_manager
