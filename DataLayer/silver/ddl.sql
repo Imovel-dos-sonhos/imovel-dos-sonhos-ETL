@@ -1,12 +1,17 @@
-CREATE TABLE IF NOT EXISTS ImoveisCaixa(
-    NumeroDoImovel      VARCHAR(14) PRIMARY KEY,
-    UF                  CHAR(2),
-    Cidade              VARCHAR(100),
-    Bairro              VARCHAR(120),
-    Endereco            VARCHAR(255),
-    Preco               DECIMAL(18, 2),
-    ValorAvaliacao      DECIMAL(18, 2),
-    Desconto            DECIMAL(3, 2),
-    Descricao           VARCHAR(500),
-    LinkDeAcesso        VARCHAR(120)
+CREATE SCHEMA IF NOT EXISTS silver;
+
+CREATE TABLE IF NOT EXISTS  silver.ImovelCaixa (
+    NumeroImovel VARCHAR(15) PRIMARY KEY,
+    UF CHAR(2),
+    Cidade VARCHAR(100),
+    Bairro VARCHAR(120),
+    Endereco VARCHAR(255),
+    Preco DECIMAL(18, 2),
+    LinkDeAcesso VARCHAR(300),
+    Descricao VARCHAR(500),
+    Desconto DECIMAL(4,2),
+    ValorAvaliacao DECIMAL(18, 2),
+    ModalidadeDeVenda VARCHAR(50),
+    DataCriacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    DataAtualizacao TIMESTAMP
 );

@@ -1,18 +1,33 @@
+name: ETL
 services:
+  jupyterlab:
+    build:
+      context: .
+      dockerfile: Dockerfile.Jupyter
+    container_name: jupyterlab
+    ports:
+      - "8888:8888"
+      - "4040:4040"
+    volumes:
+      - ./DataLayer:/home/jovyan/work/DataLayer 
+      - ./Transformer:/home/jovyan/work/Transformer
+    networks:
+      - imoveis-network
+
   imoveis.dos.sonhos.db:
     container_name: imoveis.dos.sonhos.db
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.Postgres
     restart: always
     ports:
       - "5435:5432"
     environment:
-      POSTGRES_DB: imoveis.dos.sonhos.db
+      POSTGRES_DB: ImoveisDosSonhosDB
       POSTGRES_USER: usrImoveisDosSonhos
       POSTGRES_PASSWORD: S3nh@F0rte
     networks:
-      - db-network
+      - imoveis-network
 
   pgadmin:
     container_name: imoveis.dos.sonhos.pgadmin
@@ -26,8 +41,7 @@ services:
     depends_on:
       - imoveis.dos.sonhos.db
     networks:
-      - db-network
-      
+      - imoveis-network
 networks:
-  db-network:
+  imoveis-network:
     driver: bridge

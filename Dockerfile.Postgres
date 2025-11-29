@@ -1,0 +1,6 @@
+FROM postgres:15-alpine
+
+COPY ./DataLayer/silver/ddl.sql /docker-entrypoint-initdb.d/silver_ddl.sql
+COPY ./DataLayer/gold/ddl.sql /docker-entrypoint-initdb.d/gold_ddl.sql
+
+RUN chmod 755 /docker-entrypoint-initdb.d/silver_ddl.sql /docker-entrypoint-initdb.d/gold_ddl.sql
